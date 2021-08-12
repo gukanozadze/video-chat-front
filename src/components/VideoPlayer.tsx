@@ -24,11 +24,11 @@ const VideoPlayer = () => {
       </div>
       <ul className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
         {stream && (
-          <li className="pb-10 bg-gray-800 text-center rounded-lg xl:text-left">
-            <div className="space-y-10">
+          <li className=" bg-gray-800 text-center rounded-lg xl:text-left">
+            <div className="">
               <video className="mx-auto h-full w-full rounded-lg" playsInline muted ref={myVideo} autoPlay />
 
-              <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
+              <div className="p-8 space-y-2 xl:flex xl:items-center xl:justify-between">
                 <div className="font-medium text-lg leading-6 space-y-1">
                   <h3 className="text-white">{name}</h3>
                   <p className="text-indigo-400">Software Developer</p>
@@ -38,11 +38,11 @@ const VideoPlayer = () => {
           </li>
         )}
         {callAccepted && !callEnded && (
-          <li className="pb-10 bg-gray-800 text-center rounded-lg  xl:text-left">
-            <div className="space-y-10">
+          <li className="bg-gray-800 text-center rounded-lg  xl:text-left">
+            <div className="">
               <video className="mx-auto h-full w-full rounded-lg" playsInline muted ref={userVideo} autoPlay />
 
-              <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
+              <div className="p-8 space-y-2 xl:flex xl:items-center xl:justify-between">
                 <div className="font-medium text-lg leading-6 space-y-1">
                   <h3 className="text-white">{call.name}</h3>
                   <p className="text-indigo-400">Senior Designer</p>
