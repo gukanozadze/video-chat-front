@@ -26,7 +26,7 @@ const VideoPlayer = () => {
         {stream && (
           <li className=" bg-gray-800 text-center rounded-lg xl:text-left">
             <div className="">
-              <video className="mx-auto h-full w-full rounded-lg" playsInline ref={myVideo} autoPlay />
+              <video className="mx-auto h-full w-full rounded-lg" playsInline ref={myVideo} muted autoPlay />
 
               <div className="p-8 space-y-2 xl:flex xl:items-center xl:justify-between">
                 <div className="font-medium text-lg leading-6 space-y-1">
