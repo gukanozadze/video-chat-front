@@ -39,7 +39,7 @@ const VideoPlayer = () => {
         )}
         {callAccepted && !callEnded && (
           <li className="bg-gray-800 text-center rounded-lg  xl:text-left">
-            <video className="mx-auto h-full w-full rounded-lg" playsInline ref={userVideo} autoPlay />
+            <video className="mx-auto h-full w-full rounded-lg" playsInline ref={call.signal} autoPlay />
           </li>
         )}
       </ul>
