@@ -14,9 +14,9 @@ const ContextProvider = ({ children }: Props) => {
   const [callEnded, setCallEnded] = useState<boolean>(false)
   const [name, setName] = useState("")
 
-  const myVideo = useRef<HTMLVideoElement>(null)
-  const userVideo = useRef<HTMLVideoElement>(null)
-  const connectionRef = useRef<Peer.Instance>()
+  const myVideo = useRef<any>()
+  const userVideo = useRef<any>()
+  const connectionRef = useRef<any>()
 
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
@@ -44,9 +44,7 @@ const ContextProvider = ({ children }: Props) => {
     })
 
     peer.on("stream", (currentStream) => {
-      if (userVideo.current) {
-        userVideo.current.srcObject = currentStream
-      }
+      userVideo.current.srcObject = currentStream
     })
 
     peer.signal(call.signal)
@@ -62,12 +60,11 @@ const ContextProvider = ({ children }: Props) => {
     })
 
     peer.on("stream", (currentStream) => {
-      if (userVideo.current) {
-        userVideo.current.srcObject = currentStream
-      }
+      userVideo.current.srcObject = currentStream
     })
 
     socket.on("callaccepted", (signal) => {
+      console.log("🚀 ~ file: SocketContext.tsx ~ line 71 ~ socket.on ~ signal", signal)
       setCallAccepted(true)
 
       peer.signal(signal)
@@ -78,9 +75,7 @@ const ContextProvider = ({ children }: Props) => {
 
   const leaveCall = () => {
     setCallEnded(true)
-    if (connectionRef.current) {
-      connectionRef.current.destroy()
-    }
+    connectionRef.current.destroy()
 
     window.location.reload()
   }
