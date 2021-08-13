@@ -39,7 +39,15 @@ const VideoPlayer = () => {
         )}
         {callAccepted && !callEnded && (
           <li className="bg-gray-800 text-center rounded-lg  xl:text-left">
-            <video className="mx-auto h-full w-full rounded-lg" playsInline ref={call.signal} autoPlay />
+            <div>
+              <video className="mx-auto h-full w-full rounded-lg" playsInline ref={userVideo} autoPlay />
+              <div className="p-8 space-y-2 xl:flex xl:items-center xl:justify-between">
+                <div className="font-medium text-lg leading-6 space-y-1">
+                  <h3 className="text-white">{call.name}</h3>
+                  <p className="text-indigo-400">Software Developer</p>
+                </div>
+              </div>
+            </div>
           </li>
         )}
       </ul>

@@ -22,14 +22,12 @@ const ContextProvider = ({ children }: Props) => {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
       setStream(currentStream)
 
-      if (myVideo.current) {
-        myVideo.current.srcObject = currentStream
-      }
+      myVideo.current.srcObject = currentStream
     })
 
     socket.on("me", (id) => setMe(id))
 
-    socket.on("calluser", ({ from, name: callerName, signal }) => {
+    socket.on("callUser", ({ from, name: callerName, signal }) => {
       setCall({ isReceivingCall: true, from, name: callerName, signal })
     })
   }, [])
@@ -40,7 +38,7 @@ const ContextProvider = ({ children }: Props) => {
     const peer = new Peer({ initiator: false, trickle: false, stream })
 
     peer.on("signal", (data) => {
-      socket.emit("answercall", { signal: data, to: call.from, name: call.name })
+      socket.emit("answerCall", { signal: data, to: call.from })
     })
 
     peer.on("stream", (currentStream) => {
@@ -56,15 +54,15 @@ const ContextProvider = ({ children }: Props) => {
     const peer = new Peer({ initiator: true, trickle: false, stream })
 
     peer.on("signal", (data) => {
-      socket.emit("calluser", { userToCall: id, signalData: data, from: me, name })
+      console.log(call, name)
+      socket.emit("callUser", { userToCall: id, signalData: data, from: me, name })
     })
 
     peer.on("stream", (currentStream) => {
       userVideo.current.srcObject = currentStream
     })
 
-    socket.on("callaccepted", (signal) => {
-      console.log("🚀 ~ file: SocketContext.tsx ~ line 71 ~ socket.on ~ signal", signal)
+    socket.on("callAccepted", (signal) => {
       setCallAccepted(true)
 
       peer.signal(signal)
@@ -75,6 +73,7 @@ const ContextProvider = ({ children }: Props) => {
 
   const leaveCall = () => {
     setCallEnded(true)
+
     connectionRef.current.destroy()
 
     window.location.reload()
