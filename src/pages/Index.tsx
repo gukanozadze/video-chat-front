@@ -1,9 +1,9 @@
 /* eslint-disable react/no-string-refs */
 import React, { useContext } from "react"
 import { SocketContext } from "../SocketContext"
-import Notifications from "./Notifications"
-import Options from "./Options"
-const VideoPlayer = () => {
+import Notifications from "../components/VideoPlayer/Notifications"
+import Options from "../components/VideoPlayer/Options"
+const IndexPage = () => {
   const { name, callAccepted, myVideo, userVideo, callEnded, stream, caller } = useContext(SocketContext)
 
   return (
@@ -56,4 +56,4 @@ const VideoPlayer = () => {
   )
 }
 
-export default VideoPlayer
+export default IndexPage

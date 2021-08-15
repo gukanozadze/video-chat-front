@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import CopyToClipboard from "react-copy-to-clipboard"
-import { SocketContext } from "../SocketContext"
-import Input from "./Inputs/Input"
+import { SocketContext } from "../../SocketContext"
+import Input from "../Inputs/Input"
 
 interface Props {
   children: any
