@@ -9,7 +9,6 @@ const App = () => {
   return (
     <Router>
       <Header />
-
       <Switch>
         <Route exact path="/">
           <ContextProvider>
