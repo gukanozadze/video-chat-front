@@ -3,7 +3,7 @@ import { AiFillGithub } from "react-icons/ai"
 import { Dialog, Transition } from "@headlessui/react"
 import { FaReact, FaNode } from "react-icons/fa"
 
-const solutions = [
+const githubActions = [
   {
     name: "video-chat-front",
     description: "Click to open frontend Repo",
@@ -70,7 +70,7 @@ const Header = () => {
                   Source on GitHub
                 </Dialog.Title>
                 <div className="mt-6">
-                  {solutions.map((item) => (
+                  {githubActions.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
