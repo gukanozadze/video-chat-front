@@ -3,54 +3,55 @@ import React, { useContext } from "react"
 import { SocketContext } from "../SocketContext"
 import Notifications from "./Notifications"
 import Options from "./Options"
-
 const VideoPlayer = () => {
-  const { name, callAccepted, myVideo, userVideo, callEnded, stream, call } = useContext(SocketContext)
+  const { name, callAccepted, myVideo, userVideo, callEnded, stream, caller } = useContext(SocketContext)
 
   return (
-    <div className="bg-gray-900 space-y-12">
-      <div className="flex items-start flex-col sm:flex-row ">
-        <div>
-          <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">WebRTC Video Chat</h2>
-          <p className="text-sm sm:text-lg text-gray-300">
-            Enter your name, send ID to friend and he will make a call.
-          </p>
+    <div className="mx-auto px-4 max-w-7xl sm:px-6 py-12">
+      <div className="bg-gray-900 space-y-12">
+        <div className="flex items-start flex-col sm:flex-row ">
+          <div>
+            <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">WebRTC Video Chat</h2>
+            <p className="text-sm sm:text-lg text-gray-300">
+              Enter your name, copy and send ID to friend and he will make a call.
+            </p>
+          </div>
+          <div className="mt-6 sm:mt-0 sm:ml-16">
+            <Options>
+              <Notifications />
+            </Options>
+          </div>
         </div>
-        <div className="mt-6 sm:mt-0 sm:ml-16">
-          <Options>
-            <Notifications />
-          </Options>
-        </div>
-      </div>
-      <ul className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
-        {stream && (
-          <li className=" bg-gray-800 text-center rounded-lg xl:text-left">
-            <div className="">
-              <video className="mx-auto h-full w-full rounded-lg" playsInline ref={myVideo} muted autoPlay />
+        <ul className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
+          {stream && (
+            <li className=" bg-gray-800 text-center rounded-lg xl:text-left">
+              <div className="">
+                <video className="mx-auto h-full w-full rounded-lg" playsInline ref={myVideo} muted autoPlay />
 
-              <div className="p-8 space-y-2 xl:flex xl:items-center xl:justify-between">
-                <div className="font-medium text-lg leading-6 space-y-1">
-                  <h3 className="text-white">{name}</h3>
-                  <p className="text-indigo-400">Software Developer</p>
+                <div className="p-8 space-y-2 xl:flex xl:items-center xl:justify-between">
+                  <div className="font-medium text-lg leading-6 space-y-1">
+                    <h3 className="text-white">{name}</h3>
+                    <p className="text-indigo-400">Software Developer</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-        )}
-        {callAccepted && !callEnded && (
-          <li className="bg-gray-800 text-center rounded-lg  xl:text-left">
-            <div>
-              <video className="mx-auto h-full w-full rounded-lg" playsInline ref={userVideo} autoPlay />
-              <div className="p-8 space-y-2 xl:flex xl:items-center xl:justify-between">
-                <div className="font-medium text-lg leading-6 space-y-1">
-                  <h3 className="text-white">{call.name}</h3>
-                  <p className="text-indigo-400">Software Developer</p>
+            </li>
+          )}
+          {callAccepted && !callEnded && (
+            <li className="bg-gray-800 text-center rounded-lg  xl:text-left">
+              <div>
+                <video className="mx-auto h-full w-full rounded-lg" playsInline ref={userVideo} autoPlay />
+                <div className="p-8 space-y-2 xl:flex xl:items-center xl:justify-between">
+                  <div className="font-medium text-lg leading-6 space-y-1">
+                    <h3 className="text-white">{caller.name}</h3>
+                    <p className="text-indigo-400">Software Developer</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-        )}
-      </ul>
+            </li>
+          )}
+        </ul>
+      </div>
     </div>
   )
 }

@@ -1,14 +1,26 @@
 import React from "react"
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import Header from "./components/Header/Header"
 import VideoPlayer from "./components/VideoPlayer"
-import Options from "./components/Options"
-import Notifications from "./components/Notifications"
+import Room from "./pages/Room"
+import { ContextProvider } from "./SocketContext"
 
 const App = () => {
   return (
-    <div className="bg-gray-900 mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
-      <VideoPlayer />
-    </div>
+    <Router>
+      <Header />
+
+      <Switch>
+        <Route exact path="/">
+          <ContextProvider>
+            <VideoPlayer />
+          </ContextProvider>
+        </Route>
+        {/* <Route exact path="/:room">
+          <Room />
+        </Route> */}
+      </Switch>
+    </Router>
   )
 }
 
